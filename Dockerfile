@@ -13,6 +13,9 @@ RUN npm install
 # Copia el resto del código
 COPY . .
 
+# Genera el cliente de Prisma
+RUN npx prisma generate
+
 # Compila el proyecto (opcional, si tu proyecto Nest usa TypeScript)
 RUN npm run build
 
