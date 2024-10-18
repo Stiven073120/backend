@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instala las dependencias
-RUN npm install
+RUN npm ci
 
 # Copia el resto del código
 COPY . .
@@ -16,8 +16,11 @@ COPY . .
 # Genera el cliente de Prisma
 RUN npx prisma generate
 
-# Compila el proyecto (opcional, si tu proyecto Nest usa TypeScript)
+# Compila el proyecto
 RUN npm run build
+
+# Asegúrate de que los archivos estén en el lugar correcto
+RUN ls -la dist/
 
 # Expone el puerto que usa el backend
 EXPOSE 3000
